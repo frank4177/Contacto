@@ -16,8 +16,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Spinner from "@/components/Loaders/Spinner";
 import { useRouter } from "next/navigation";
 import {toast, ToastPosition } from 'react-toastify';
+import { useDispatch } from "react-redux";
+import { userAuth } from "@/services/redux/features/userSlice";
 
 const CreateAccountForm = () => {
+  const dispatch = useDispatch()
 const router = useRouter()
   const [loading, setLoading] = useState(false);
 
@@ -48,7 +51,7 @@ const router = useRouter()
         const res = await createUserWithEmailAndPassword(
           authentication,
           data.account_email,
-          data.account_number
+          data.account_number + "123456"
         );
 
         // toast.success
@@ -63,17 +66,22 @@ const router = useRouter()
         setLoading(false)
         console.log(doc);
 
-        Swal.fire({
-          title: "Success",
-          icon: "success",
-          allowOutsideClick: false,
-          confirmButtonText: "Login",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            router.push("/dashboard")
+        if (doc) {
+          dispatch(userAuth(doc?.type))
+          Swal.fire({
+            title: "Success",
+            icon: "success",
+            allowOutsideClick: false,
+            confirmButtonText: "Login",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              router.push("/dashboard")
+  
+            }
+          });
+        }
 
-          }
-        });
+        
       } catch (error: any) {
         console.log(error.code)
         if (error.code === "auth/email-already-in-use") {
@@ -174,7 +182,7 @@ const router = useRouter()
         <div className="flex flex-row items-center justify-between  max-w-[450px] w-full  ">
           <div className="flex flex-row items-center gap-1 ">
             <CalculateOutlinedIcon />
-            <span>Password</span>
+            <span>Number</span>
           </div>
           <div className="w-full flex flex-col max-w-[330px]">
           <TextField

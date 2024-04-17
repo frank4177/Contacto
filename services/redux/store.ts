@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import contactsSlice from "./features/userSlice";
+import userSlice from "./features/userSlice";
 
 
 export const store = configureStore({
   reducer: {
-    contactsData: contactsSlice
+    user: userSlice
+    
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

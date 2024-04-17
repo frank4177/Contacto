@@ -18,17 +18,19 @@ import FlatLoader from "../Loaders/flatLoader";
 import NoData from "../NotFound/noData";
 import Image from "next/image";
 
+const photo = "https://img.freepik.com/free-photo/handsome-man-smiling-happy-face-portrait-close-up_53876-139608.jpg?t=st=1713347000~exp=1713350600~hmac=efecefe5cbb1d612c12b4e80742cdf5ea6d39cd7013f1b26e0007692a7eaecd8&w=900"
+
 const ContactTable = () => {
   const modalTitle = "Edit Contacts";
   const modalSubTitle = "To edit contacts, please enter the following:";
   const contacts = useSelector(
-    (state: RootState) => state?.contactsData?.contacts
+    (state: RootState) => state?.user?.contacts
   );
   const { refetch, loading: isFetching } = usefetchContacts();
 
   useEffect(() => {
     refetch();
-  }, [refetch]);
+  }, []);
 
   return (
     <>
@@ -56,7 +58,7 @@ const ContactTable = () => {
                 <TableCell className="tableCell !font-normal">
                   <div className="flex flex-row items-center gap-2">
                     <Image
-                      src="https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg"
+                      src={photo}
                       height={50}
                       width={50}
                       alt="user avatar"
