@@ -8,12 +8,14 @@ export const metadata: Metadata = {
 
 export default function DashboardLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <div>
-      <AuthProvider>{children}</AuthProvider>
+      <AuthProvider>
+        <div>{children}</div>
+      </AuthProvider>
     </div>
   );
 }
