@@ -1,8 +1,9 @@
 import React from "react";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import HomeIcon from "@mui/icons-material/Home";
+
 import AddEditContactsButton from "@/components/Buttons/Add_Edit_Contacts";
-import { NoSsr } from "@mui/material";
+
+import { IoIosHome } from "react-icons/io";
+import { LuPlus } from "react-icons/lu";
 
 const HeaderComponent = () => {
   const modalTitle = "Add Contacts";
@@ -11,9 +12,7 @@ const HeaderComponent = () => {
     <div className="flex flex-row items-center justify-between">
       <div className="flex flex-row gap-3">
         <div className="flex flex-row items-center gap-1">
-          <NoSsr>
-            <HomeIcon />
-          </NoSsr>
+          <IoIosHome size={23} />
 
           <span>Contacts</span>
         </div>
@@ -21,11 +20,7 @@ const HeaderComponent = () => {
       </div>
 
       <AddEditContactsButton
-        icon={
-          <NoSsr>
-            <AddOutlinedIcon />
-          </NoSsr>
-        }
+        icon={<LuPlus size={27} color="black" />}
         title={modalTitle}
         subTitle={modalSubTitle}
       />
